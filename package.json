@@ -3,12 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rebass/grid": "^6.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "coven": "^0.4.3",
+    "css.gg": "^1.0.6",
+    "haikunator": "^2.1.2",
+    "immer": "^5.3.6",
+    "lodash.get": "^4.4.2",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "styled-components": "^5.0.1",
+    "zustand": "^2.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
