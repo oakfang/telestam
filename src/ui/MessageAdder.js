@@ -7,7 +7,7 @@ import { useMessageService } from 'services/messages';
 
 export function MessageAdder() {
   const [text, setText] = useState('');
-  const add = useMessageService(store => store.add);
+  const { add } = useMessageService();
   const onChange = e => setText(e.target.value);
   const onSubmit = e => {
     e.preventDefault();
@@ -17,6 +17,7 @@ export function MessageAdder() {
   return (
     <Flex as="form" justifyContent="space-between" onSubmit={onSubmit}>
       <Input
+        autoFocus
         placeholder={`Message as ${username}`}
         value={text}
         onChange={onChange}

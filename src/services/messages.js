@@ -1,28 +1,38 @@
-import produce from 'immer';
-import create from 'zustand';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from 'react';
 import Coven from 'coven';
 
 import { username } from 'services/username';
 
-const coven = new Coven({ signaling: 'wss://coven-broker.now.sh' });
+const coven = new Coven({ signaling: "wss://coven-broker.herokuapp.com" });
 
-const immer = config => (set, get, api) =>
-  config(fn => set(produce(fn)), get, api);
+const MessageCtx = createContext();
 
-export const [useMessageService, messageAPI] = create(
-  immer(set => ({
-    messages: [],
-    add: message =>
-      set(({ messages }) => {
-        messages.push(message);
-        coven.broadcast({ ...message, username });
-      }),
-    push: message =>
-      set(({ messages }) => {
-        messages.push(message);
-      }),
-  })),
-);
+export function Provider({ children }) {
+  const [messages, setMessages] = useState([]);
+  const push = useCallback(
+    message => setMessages(messages => [...messages, message]),
+    [],
+  );
+  const add = useCallback(
+    message => {
+      push(message);
+      coven.broadcast({ ...message, username });
+    },
+    [push],
+  );
+  useEffect(() => {
+    const handler = ({ message }) => push(message);
+    coven.on('message', handler);
+    return () => coven.off('message', handler);
+  }, [push]);
+  const ctx = { messages, push, add };
+  return <MessageCtx.Provider value={ctx}>{children}</MessageCtx.Provider>;
+}
 
-const { push } = messageAPI.getState();
-coven.on('message', ({ message }) => push(message));
+export const useMessageService = () => useContext(MessageCtx);

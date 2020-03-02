@@ -4,13 +4,16 @@ import 'normalize.css';
 
 import { Theme } from 'theme';
 import { GlobalStyle } from 'global-style';
+import { Provider } from 'services/messages';
 import App from 'ui';
 
 ReactDOM.render(
   <>
     <GlobalStyle />
     <Theme>
-      <App />
+      <Provider>
+        <App />
+      </Provider>
     </Theme>
   </>,
   document.getElementById('root'),

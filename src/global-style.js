@@ -9,9 +9,7 @@ export const GlobalStyle = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100vh;
     width: 100vw;
-
     background-color: ${themed('palatte.secondary')};
     color: ${themed('palatte.textS')};
   }

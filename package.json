@@ -10,14 +10,13 @@
     "coven": "^0.4.3",
     "css.gg": "^1.0.6",
     "haikunator": "^2.1.2",
-    "immer": "^5.3.6",
     "lodash.get": "^4.4.2",
     "normalize.css": "^8.0.1",
     "react": "^16.13.0",
+    "react-div-100vh": "^0.3.8",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "styled-components": "^5.0.1",
-    "zustand": "^2.2.3"
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

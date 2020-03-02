@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Div100vh from 'react-div-100vh';
 import { Flex, Box } from '@rebass/grid';
 
 import { themed } from 'theme';
@@ -9,16 +10,18 @@ import { MessageAdder } from 'ui/MessageAdder';
 
 export function App() {
   return (
-    <Flex flexDirection="column" width="100vw" height="100vh">
-      <Background />
-      <Header>
-        <h1>TeleStam</h1>
-      </Header>
-      <MessageBox />
-      <Box as="footer" pb="5px">
-        <MessageAdder />
-      </Box>
-    </Flex>
+    <Div100vh>
+      <Flex flexDirection="column" width="100%" height="100%">
+        <Background />
+        <Header>
+          <h1>TeleStam</h1>
+        </Header>
+        <MessageBox />
+        <Box as="footer" pb="5px">
+          <MessageAdder />
+        </Box>
+      </Flex>
+    </Div100vh>
   );
 }
 
