@@ -23,7 +23,7 @@ export function MessageAdder() {
         onChange={onChange}
       />
       <RoundButton primary required disabled={!text}>
-        <i className="gg-add"></i>
+        <i className="gg-add" />
       </RoundButton>
     </Flex>
   );
