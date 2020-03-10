@@ -5,15 +5,15 @@ import React, {
   useCallback,
   useEffect,
 } from 'react';
-import Coven from 'coven';
 
+import { useCoven } from 'services/coven';
 import { username } from 'services/username';
-
-const coven = new Coven({ signaling: "wss://coven-broker.herokuapp.com" });
+import { COVEN_BROKER } from 'config';
 
 const MessageCtx = createContext();
 
 export function Provider({ children }) {
+  const coven = useCoven(COVEN_BROKER);
   const [messages, setMessages] = useState([]);
   const push = useCallback(
     message => setMessages(messages => [...messages, message]),
@@ -24,14 +24,14 @@ export function Provider({ children }) {
       push(message);
       coven.broadcast({ ...message, username });
     },
-    [push],
+    [push, coven],
   );
   useEffect(() => {
     const handler = ({ message }) => push(message);
     coven.on('message', handler);
     return () => coven.off('message', handler);
-  }, [push]);
-  const ctx = { messages, push, add };
+  }, [push, coven]);
+  const ctx = { messages, add };
   return <MessageCtx.Provider value={ctx}>{children}</MessageCtx.Provider>;
 }
 
