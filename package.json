@@ -20,10 +20,11 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tnl": "lt -h 'http://serverless.social' --port 4000 --subdomain telestam"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "localtunnel": "^2.0.0"
   }
 }

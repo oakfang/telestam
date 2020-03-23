@@ -35,4 +35,5 @@ const Container = styled(Flex).attrs({
   flexDirection: 'column',
 })`
   overflow: auto;
+  z-index: -1;
 `;
